@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Practice Use</title>
+</head>
+
+<body>
+
+    <script>
+        let names = {
+            fname: "Staci",
+            lname: "Johnsone"
+        }
+        console.log(names.fname);
+        console.log(names.hasOwnProperty("mname"));
+        console.log(names);
+        // Expected Output
+        //Staci
+        //false
+
+
+        function DogObject(name, age) {
+            let dog = Object.create(constructorObject);
+            dog.name = name;
+            dog.age = age;
+            return dog;
+        }
+        let constructorObject = {
+            speak: function() {
+                return "I am a dog"
+            }
+        }
+        let bingo = DogObject("Bingo", 54);
+        console.log(bingo);
+
+        class Animals {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            sing() {
+                return `${this.name} can sing`;
+            }
+            dance() {
+                return `${this.name} can dance`;
+            }
+        }
+        class Cats extends Animals {
+            constructor(name, age, whiskerColor) {
+                super(name, age);
+                this.whiskerColor = whiskerColor;
+            }
+            whiskers() {
+                return `I have ${this.whiskerColor} whiskers`;
+            }
+        }
+        let ginger = new Cats("Ginger", 33, "pearl");
+
+        console.log(ginger.sing());
+        console.log(ginger.whiskers());
+        console.log(ginger);
+
+        function Animals(name, age) {
+            let newAnimal = Object.create(animalConstructor);
+            newAnimal.name = name;
+            newAnimal.age = age;
+            return newAnimal;
+        }
+        let animalConstructor = {
+            sing: function() {
+                return `${this.name} can sing`;
+            },
+            dance: function() {
+                return `${this.name} can dance`;
+            }
+        }
+
+        function Cats(name, age, whiskerColor) {
+            let newCat = Animals(name, age);
+            Object.setPrototypeOf(newCat, catConstructor);
+            newCat.whiskerColor = whiskerColor;
+            return newCat;
+        }
+        let catConstructor = {
+            whiskers() {
+                return `I have ${this.whiskerColor} whiskers`;
+            }
+        }
+        Object.setPrototypeOf(catConstructor, animalConstructor);
+        let ginger = Cats("Ginger", 33, "pearl");
+        console.log(ginger.sing());
+        console.log(ginger.whiskers());
+    </script>
+</body>
+
+</html>
